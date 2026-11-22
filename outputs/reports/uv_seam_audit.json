@@ -1,0 +1,294 @@
+{
+  "results": [
+    {
+      "path": "textures/uv_maps/subject_01_albedo.png",
+      "valid": true,
+      "edge_delta": 4.4858,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.4858
+    },
+    {
+      "path": "textures/uv_maps/subject_01_bump.png",
+      "valid": true,
+      "edge_delta": 7.2247,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 7.2247
+    },
+    {
+      "path": "textures/uv_maps/subject_01_roughness.png",
+      "valid": true,
+      "edge_delta": 0.4565,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 0.4565
+    },
+    {
+      "path": "textures/uv_maps/subject_01_uv.png",
+      "valid": true,
+      "edge_delta": 4.4858,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.4858
+    },
+    {
+      "path": "textures/uv_maps/subject_02_albedo.png",
+      "valid": true,
+      "edge_delta": 4.2762,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.2762
+    },
+    {
+      "path": "textures/uv_maps/subject_02_bump.png",
+      "valid": true,
+      "edge_delta": 7.1956,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 7.1956
+    },
+    {
+      "path": "textures/uv_maps/subject_02_roughness.png",
+      "valid": true,
+      "edge_delta": 0.4806,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 0.4806
+    },
+    {
+      "path": "textures/uv_maps/subject_02_uv.png",
+      "valid": true,
+      "edge_delta": 4.2762,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.2762
+    },
+    {
+      "path": "textures/uv_maps/subject_03_albedo.png",
+      "valid": true,
+      "edge_delta": 4.0511,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.0511
+    },
+    {
+      "path": "textures/uv_maps/subject_03_bump.png",
+      "valid": true,
+      "edge_delta": 7.1424,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 7.1424
+    },
+    {
+      "path": "textures/uv_maps/subject_03_roughness.png",
+      "valid": true,
+      "edge_delta": 0.4535,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 0.4535
+    },
+    {
+      "path": "textures/uv_maps/subject_03_uv.png",
+      "valid": true,
+      "edge_delta": 4.0511,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.0511
+    },
+    {
+      "path": "textures/uv_maps/subject_04_albedo.png",
+      "valid": true,
+      "edge_delta": 3.8665,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 3.8665
+    },
+    {
+      "path": "textures/uv_maps/subject_04_bump.png",
+      "valid": true,
+      "edge_delta": 7.1404,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 7.1404
+    },
+    {
+      "path": "textures/uv_maps/subject_04_roughness.png",
+      "valid": true,
+      "edge_delta": 0.4144,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 0.4144
+    },
+    {
+      "path": "textures/uv_maps/subject_04_uv.png",
+      "valid": true,
+      "edge_delta": 3.8665,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 3.8665
+    },
+    {
+      "path": "textures/uv_maps/subject_05_albedo.png",
+      "valid": true,
+      "edge_delta": 4.6693,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.6693
+    },
+    {
+      "path": "textures/uv_maps/subject_05_bump.png",
+      "valid": true,
+      "edge_delta": 7.0975,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 7.0975
+    },
+    {
+      "path": "textures/uv_maps/subject_05_roughness.png",
+      "valid": true,
+      "edge_delta": 0.437,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 0.437
+    },
+    {
+      "path": "textures/uv_maps/subject_05_uv.png",
+      "valid": true,
+      "edge_delta": 4.6693,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.6693
+    },
+    {
+      "path": "textures/uv_maps/subject_06_albedo.png",
+      "valid": true,
+      "edge_delta": 4.0987,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.0987
+    },
+    {
+      "path": "textures/uv_maps/subject_06_bump.png",
+      "valid": true,
+      "edge_delta": 7.1848,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 7.1848
+    },
+    {
+      "path": "textures/uv_maps/subject_06_roughness.png",
+      "valid": true,
+      "edge_delta": 0.4732,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 0.4732
+    },
+    {
+      "path": "textures/uv_maps/subject_06_uv.png",
+      "valid": true,
+      "edge_delta": 4.0987,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.0987
+    },
+    {
+      "path": "textures/uv_maps/subject_07_albedo.png",
+      "valid": true,
+      "edge_delta": 4.4092,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.4092
+    },
+    {
+      "path": "textures/uv_maps/subject_07_bump.png",
+      "valid": true,
+      "edge_delta": 7.1393,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 7.1393
+    },
+    {
+      "path": "textures/uv_maps/subject_07_roughness.png",
+      "valid": true,
+      "edge_delta": 0.4819,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 0.4819
+    },
+    {
+      "path": "textures/uv_maps/subject_07_uv.png",
+      "valid": true,
+      "edge_delta": 4.4092,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 4.4092
+    },
+    {
+      "path": "textures/uv_maps/subject_08_albedo.png",
+      "valid": true,
+      "edge_delta": 3.843,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 3.843
+    },
+    {
+      "path": "textures/uv_maps/subject_08_bump.png",
+      "valid": true,
+      "edge_delta": 7.2148,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 7.2148
+    },
+    {
+      "path": "textures/uv_maps/subject_08_roughness.png",
+      "valid": true,
+      "edge_delta": 0.4872,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 0.4872
+    },
+    {
+      "path": "textures/uv_maps/subject_08_uv.png",
+      "valid": true,
+      "edge_delta": 3.843,
+      "threshold": 45.0,
+      "mode": "basic_image_boundary",
+      "mesh_aware": false,
+      "mean_discontinuity": 3.843
+    }
+  ],
+  "mesh_aware": false,
+  "warning": "Basic image-boundary validation does not inspect real mesh UV coordinates."
+}

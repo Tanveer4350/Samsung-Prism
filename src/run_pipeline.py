@@ -21,6 +21,9 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--batch_stills", type=Path)
     parser.add_argument("--fps", type=int, default=30)
     parser.add_argument("--duration", type=float, default=4.0)
+    parser.add_argument("--model", type=Path)
+    parser.add_argument("--resolution", type=int, default=640)
+    parser.add_argument("--engine", choices=("EEVEE", "CYCLES"), default="EEVEE")
     parser.add_argument("--motion-json", type=Path)
     return parser.parse_args(argv)
 
@@ -28,8 +31,16 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     raw_args = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else (argv or sys.argv[1:])
     args = parse_args(raw_args)
+    if args.duration <= 0 or args.duration > 15:
+        raise SystemExit("--duration must be greater than 0 and at most 15 seconds")
+    if args.texture and not args.texture.exists():
+        raise SystemExit(f"texture not found: {args.texture}")
+    if args.model and not args.model.exists():
+        raise SystemExit(f"model not found: {args.model}")
     if args.batch_stills:
-        textures = sorted(args.batch_stills.glob("*.png"))
+        textures = sorted(args.batch_stills.glob("*_albedo.png"))
+        if not textures:
+            textures = sorted(args.batch_stills.glob("*_uv.png"))
         if not textures:
             raise SystemExit(f"no PNG textures found in {args.batch_stills}")
         if _bpy_available():
@@ -38,10 +49,10 @@ def main(argv: list[str] | None = None) -> int:
             output_dir = args.output or Path("outputs/renders")
             output_dir.mkdir(parents=True, exist_ok=True)
             for index, texture in enumerate(textures, 1):
-                rig = build_scene(texture.resolve())
+                rig = build_scene(texture.resolve(), args.model.resolve() if args.model else None, args.resolution, args.engine)
                 scene = bpy.context.scene
-                scene.render.resolution_x = 1280
-                scene.render.resolution_y = 720
+                scene.render.resolution_x = args.resolution
+                scene.render.resolution_y = round(args.resolution * 9 / 16)
                 scene.render.image_settings.file_format = "PNG"
                 scene.render.filepath = str((output_dir / f"subject_{index:02d}_hero.png").resolve())
                 bpy.ops.render.render(write_still=True)
@@ -60,7 +71,7 @@ def main(argv: list[str] | None = None) -> int:
         import bpy
         from setup_blender_rig import build_scene
         texture = args.texture.resolve() if args.texture else None
-        rig = build_scene(texture)
+        rig = build_scene(texture, args.model.resolve() if args.model else None, args.resolution, args.engine)
         scene = bpy.context.scene
         scene.render.fps = args.fps
         scene.frame_start = 1

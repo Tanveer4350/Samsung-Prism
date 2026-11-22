@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from pathlib import Path
+import sys
+import argparse
 
 import bpy
 from mathutils import Vector
@@ -86,19 +88,13 @@ def add_eye(prefix: str, x: float, iris_texture: Path | None = None) -> tuple[bp
     return empty, sclera, iris, cornea
 
 
-def build_scene(texture_path: Path | None = None) -> dict[str, bpy.types.Object]:
+def build_scene(texture_path: Path | None = None, model_path: Path | None = None, resolution: int = 640, engine: str = "EEVEE") -> dict[str, bpy.types.Object]:
     clear_scene()
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from create_head import build_head
+    head_result = build_head(texture_path, model_path)
 
-    skin_mat = material("Skin", (0.62, 0.38, 0.25, 1), roughness=0.42, subsurface=0.08)
-    if texture_path:
-        apply_texture(skin_mat, texture_path)
-    head = add_uv("Head", (0.0, 0.0, 0.0), (0.82, 0.58, 1.0), skin_mat)
-    neck = add_uv("Neck", (0.0, 0.12, -1.05), (0.34, 0.34, 0.55), skin_mat)
-
-    nose_mat = material("Nose", (0.58, 0.34, 0.22, 1), roughness=0.38, subsurface=0.04)
-    nose = add_uv("Nose", (0.0, -0.57, -0.08), (0.12, 0.18, 0.27), nose_mat)
-
-    subject = texture_path.stem.replace("_uv", "") if texture_path else None
+    subject = "_".join(texture_path.stem.split("_")[:2]) if texture_path else None
     iris_l = (texture_path.parent.parent / "iris_maps" / f"{subject}_iris_L.png") if subject else None
     iris_r = (texture_path.parent.parent / "iris_maps" / f"{subject}_iris_R.png") if subject else None
     eye_l, *_ = add_eye("Eye_L", -0.30, iris_l)
@@ -147,13 +143,23 @@ def build_scene(texture_path: Path | None = None) -> dict[str, bpy.types.Object]
     world.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.45
 
     scene = bpy.context.scene
-    scene.render.engine = "BLENDER_EEVEE"
-    scene.eevee.use_gtao = True
-    scene.eevee.use_ssr = True
-    scene.eevee.use_ssr_refraction = True
-    scene.eevee.taa_render_samples = 16
-    scene.render.resolution_x = 640
-    scene.render.resolution_y = 360
+    if engine.upper() == "EEVEE":
+        try:
+            scene.render.engine = "BLENDER_EEVEE_NEXT"
+        except TypeError:
+            scene.render.engine = "BLENDER_EEVEE"
+    if engine.upper() == "CYCLES":
+        scene.render.engine = "CYCLES"
+        scene.cycles.samples = 32
+    elif hasattr(scene, "eevee"):
+        if hasattr(scene.eevee, "use_gtao"):
+            scene.eevee.use_gtao = True
+        if hasattr(scene.eevee, "use_ssr"):
+            scene.eevee.use_ssr = True
+        if hasattr(scene.eevee, "taa_render_samples"):
+            scene.eevee.taa_render_samples = 16
+    scene.render.resolution_x = resolution
+    scene.render.resolution_y = round(resolution * 9 / 16)
     scene.render.resolution_percentage = 100
     scene.render.image_settings.file_format = "FFMPEG"
     scene.render.ffmpeg.format = "MPEG4"
@@ -176,7 +182,22 @@ def build_scene(texture_path: Path | None = None) -> dict[str, bpy.types.Object]
 
 
 def main() -> None:
-    build_scene()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--texture", type=Path)
+    parser.add_argument("--model", type=Path)
+    parser.add_argument("--resolution", type=int, default=640)
+    parser.add_argument("--engine", choices=("EEVEE", "CYCLES"), default="EEVEE")
+    if "--" in sys.argv:
+        argv = sys.argv[sys.argv.index("--") + 1:]
+    else:
+        argv = sys.argv[1:]
+    args = parser.parse_args(argv)
+    build_scene(
+        args.texture.resolve() if args.texture else None,
+        args.model.resolve() if args.model else None,
+        args.resolution,
+        args.engine,
+    )
     BLEND_PATH.parent.mkdir(parents=True, exist_ok=True)
     bpy.ops.wm.save_as_mainfile(filepath=str(BLEND_PATH))
     print(f"Saved Blender rig: {BLEND_PATH}")

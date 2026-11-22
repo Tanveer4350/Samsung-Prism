@@ -1,0 +1,14 @@
+{
+  "project": "Synthetic Head Modeling & Texturing",
+  "texture_count": 8,
+  "texture_resolution": 4096,
+  "fps": 30,
+  "duration_seconds": 4.0,
+  "render_engine": "EEVEE",
+  "still_resolution": 1920,
+  "max_video_seconds": 15,
+  "native_models": [
+    "assets/base_models/gnm_head_base.obj",
+    "assets/base_models/flame_head_base.obj"
+  ]
+}

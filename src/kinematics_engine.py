@@ -89,7 +89,7 @@ class GazeEngine:
                 previous[2] + (following[2] - previous[2]) * eased,
                 duration=min(12, span),
             )
-            blink = self._blink(frame, frame_count)
+            blink = self._blink(frame, frame_count, repeated=(mode_key == "generate motion"))
             samples.append(
                 GazeSample(
                     frame=sample.frame,
@@ -103,12 +103,19 @@ class GazeEngine:
             )
         return samples
 
-    @staticmethod
-    def _blink(frame: int, frame_count: int) -> float:
-        center = frame_count * 0.62
-        width = max(3.0, frame_count * 0.035)
-        distance = abs(frame - center)
-        return 0.5 * (1.0 + cos(pi * distance / width)) if distance < width else 0.0
+    def _blink(self, frame: int, frame_count: int, repeated: bool = True) -> float:
+        """A closed interval of approximately 180 ms, with repeated blinks."""
+        blink_frames = max(5, round(0.18 * self.fps))
+        half_width = blink_frames / 2.0
+        first_center = frame_count * 0.62
+        repeated_center = frame_count * 0.38
+        total = 0.0
+        centers = (first_center, repeated_center) if repeated else (first_center,)
+        for center in centers:
+            distance = abs(frame - center)
+            if distance < half_width:
+                total = max(total, 0.5 * (1.0 + cos(pi * distance / half_width)))
+        return total
 
 
 def samples_to_dicts(samples: list[GazeSample]) -> list[dict[str, float | int]]:
